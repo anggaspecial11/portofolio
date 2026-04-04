@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio & CV | Erlangga Hariadi Putra</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            height: 100%;
+        }
+
+        /* Header Minimalis */
+        .hero-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 50px 0 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .profile-img-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #1e3c72;
+            margin: 0 auto 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .profile-img-container img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        .hero-title {
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .hero-subtitle {
+            font-weight: 300;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Tabs Styling */
+        .main-container {
+            margin-top: 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .content-card {
+            min-height: 505px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 30px;
+            margin-bottom: 50px;
+        }
+
+        .nav-pills {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .nav-pills .nav-link {
+            color: #555;
+            font-weight: 500;
+            border-radius: 8px;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-pills .nav-link:hover {
+            background-color: #e9ecef;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: #2a5298;
+            color: white;
+            box-shadow: 0 4px 10px rgba(42, 82, 152, 0.3);
+        }
+
+        .nav-link i {
+            margin-right: 8px;
+        }
+
+        /* Timeline & List Styles */
+        .timeline {
+            border-left: 2px solid #e0e0e0;
+            padding-left: 20px;
+            margin-left: 10px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #2a5298;
+            border: 2px solid #fff;
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: #2a5298;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 2px;
+        }
+
+        .timeline-subtitle {
+            font-weight: 500;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        /* Info Table */
+        .info-table th {
+            width: 35%;
+            color: #666;
+            font-weight: 500;
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+        }
+        .info-table td {
+            font-weight: 600;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+        }
+
+        /* Skills Badges */
+        .skill-badge {
+            background-color: #f0f4f8;
+            color: #2a5298;
+            border: 1px solid #d9e2ec;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        /* Accordion Custom */
+        .accordion-button {
+            font-weight: 600;
+            color: #1e3c72;
+            background-color: #f8faff;
+        }
+        .accordion-button:not(.collapsed) {
+            color: #fff;
+            background-color: #2a5298;
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+        }
+        .accordion-button::after {
+            filter: grayscale(100%);
+        }
+        .accordion-button:not(.collapsed)::after {
+            filter: brightness(0) invert(1);
+        }
+        
+        .portfolio-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .portfolio-list li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .portfolio-list li:last-child {
+            border-bottom: none;
+        }
+        .portfolio-list a {
+            text-decoration: none;
+            color: #444;
+            display: block;
+            padding: 12px 15px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+        }
+        .portfolio-list a:hover {
+            background-color: #f8f9fa;
+            color: #2a5298;
+            padding-left: 20px;
+        }
+        .portfolio-list a i {
+            color: #aaa;
+            margin-right: 12px;
+            font-size: 0.9rem;
+        }
+        .portfolio-list a:hover i {
+            color: #2a5298;
+        }
+        .sub-link {
+            padding-left: 40px !important;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 25px 0;
+            margin-top: 50px;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            transition: 0.3s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .nav-pills {
+                flex-direction: column;
+            }
+            .nav-pills .nav-link {
+                text-align: left;
+            }
+        }
+
+        /* DARK MODE - NAVY THEME */
+        body.dark-mode {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .content-card {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .nav-pills {
+            background: #1e293b;
+        }
+
+        body.dark-mode .nav-pills .nav-link {
+            color: #cbd5f5;
+        }
+
+        body.dark-mode .nav-pills .nav-link.active {
+            background-color: #1d4ed8;
+            color: #fff;
+        }
+
+        body.dark-mode .hero-section {
+            background: linear-gradient(135deg, #0f172a, #1d4ed8);
+        }
+
+        body.dark-mode .info-table td,
+        body.dark-mode .info-table th {
+            color: #e2e8f0;
+            border-color: #334155;
+        }
+
+        body.dark-mode .portfolio-list a {
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .portfolio-list a:hover {
+            background-color: #1e293b;
+            color: #60a5fa;
+        }
+
+        body.dark-mode .accordion-button {
+            background-color: #1e293b;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .accordion-button:not(.collapsed) {
+            background-color: #1d4ed8;
+        }
+/* ACCORDION DARK MODE */
+body.dark-mode .accordion-item {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.dark-mode .accordion-body {
+    background-color: #1e293b;
+}
+
+body.dark-mode .accordion-collapse {
+    background-color: #1e293b;
+}
+        body.dark-mode .skill-badge {
+            background-color: #1e293b;
+            color: #60a5fa;
+            border-color: #1d4ed8;
+        }
+
+        body.dark-mode footer {
+            background-color: #0f172a;
+        }
+/* FIX CARD DI DARK MODE */
+body.dark-mode .card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    color: #e2e8f0;
+}
+
+body.dark-mode .card strong {
+    color: #ffffff;
+}
+
+body.dark-mode .card i {
+    opacity: 0.9;
+}
+body.dark-mode .card:hover {
+    background-color: #273449;
+    transform: translateY(-3px);
+    transition: 0.3s;
+}
+body.dark-mode a {
+    color: inherit;
+}
+/* DESKRIPSI BIAR LEBIH TERANG */
+body.dark-mode #profil p {
+    color: #e2e8f0 !important;
+}
+/* FIX TOTAL TABLE DARK MODE */
+body.dark-mode .table {
+    background-color: transparent !important;
+    color: #e2e8f0;
+}
+
+body.dark-mode .table tbody,
+body.dark-mode .table tr {
+    background-color: transparent !important;
+}
+
+body.dark-mode .table td,
+body.dark-mode .table th {
+    background-color: transparent !important;
+    color: #e2e8f0 !important;
+    border-color: rgba(148, 163, 184, 0.2) !important;
+}
+
+</style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <div class="profile-img-container">
+                <img src="https://scontent.fcgk6-3.fna.fbcdn.net/v/t39.30808-6/658954349_122227188806376739_992334352192552507_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeEViTtRx3S_FYVh-mRqUZcbdpwoN7Wq8g12nCg3taryDWz-LLdgwAlPl1pUikBZK1KfpIBK6Hi9ja-5uBBON-Un&_nc_ohc=QQFbFpb5jNoQ7kNvwGlYIJ-&_nc_oc=AdoBUp1xgx_iKgS9f_t2Pa2wCvkmHA70xzcSFqmlVSGxBt06gU4rMS0Dghfps9uzPu8&_nc_zt=23&_nc_ht=scontent.fcgk6-3.fna&_nc_gid=osEH90NaXpMNa7Ju36cZFw&_nc_ss=7a3a8&oh=00_Af36wIwrAU9p80AXGFgJ8dXLicf4YG4MGMsoqx_sEOWTyA&oe=69D6976C"/>
+            </div>
+            <h1 class="hero-title">Erlangga Hariadi Putra</h1>
+            <p class="hero-subtitle mb-0">Web Developer & Front End</p>
+            <span class="hero-subtitle mb-0">anggaspecial@gmail.com | 085173209927</span>
+            <div class="mt-3">
+                <button onclick="toggleDarkMode()" class="btn btn-light btn-sm">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>            
+        </div>
+    </section>
+
+    <!-- Main Content with Tabs -->
+    <div class="container main-container">
+        <div class="content-card">
+
+            <!-- Tab Navigations -->
+            <ul class="nav nav-pills" id="cvTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="profil-tab" data-bs-toggle="pill" data-bs-target="#profil" type="button" role="tab"><i class="fa-solid fa-address-card"></i> Profil</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="data-diri-tab" data-bs-toggle="pill" data-bs-target="#data-diri" type="button" role="tab"><i class="fa-solid fa-user"></i> Data Diri</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pendidikan-tab" data-bs-toggle="pill" data-bs-target="#pendidikan" type="button" role="tab"><i class="fa-solid fa-graduation-cap"></i> Pendidikan & Skill</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pengalaman-tab" data-bs-toggle="pill" data-bs-target="#pengalaman" type="button" role="tab"><i class="fa-solid fa-briefcase"></i> Pengalaman</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="portofolio-tab" data-bs-toggle="pill" data-bs-target="#portofolio" type="button" role="tab"><i class="fa-solid fa-laptop-code"></i> Portofolio</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="kontak-tab" data-bs-toggle="pill" data-bs-target="#kontak" type="button" role="tab">
+                        <i class="fa-solid fa-address-book"></i> Kontak
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content" id="cvTabsContent">
+
+                <!-- TAB 1: Profil / Deskripsi Singkat -->
+                <div class="tab-pane fade show active" id="profil" role="tabpanel">
+                    <h4 class="mb-4 fw-bold text-primary"><i class="fa-solid fa-quote-left me-2"></i> Deskripsi Singkat</h4>
+                    <p class="fs-5 lh-lg" style="color: #555;">
+                        Saya memiliki pengalaman luas dalam membangun dan mengelola website untuk sektor publik (perguruan tinggi, pemerintahan, rumah sakit, dan sekolah). Menguasai pengembangan berbasis WordPress (custom theme & plugin), HTML, CSS, ReactJS, NodeJS, PHP native dan CodeIgniter.
+                    </p>
+                    <p class="fs-5 lh-lg" style="color: #555;">
+                        Berpengalaman menangani proyek secara end-to-end, mulai dari perancangan sistem, pengembangan, deployment, hingga pelatihan pengguna (BIMTEK). Terbiasa mengembangkan sistem multi-site, portal berbasis regulasi seperti SPME/SPMI, PPID, dan JDIH, serta e-commerce dengan integrasi payment gateway seperti Midtrans, Tripay, dan Xendit.
+                    </p>
+                    <p class="fs-5 lh-lg" style="color: #555;">
+                        Telah mengembangkan ratusan website aktif dalam lingkungan produksi dengan berbagai tingkat kompleksitas dan kebutuhan berbasis regulasi. 
+                    </p>
+                </div>
+
+                <!-- TAB 2: Data Diri -->
+                <div class="tab-pane fade" id="data-diri" role="tabpanel">
+                    <h4 class="mb-4 fw-bold text-primary"><i class="fa-solid fa-user-check me-2"></i> Informasi Personal</h4>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <table class="table table-borderless info-table">
+                                <tbody>
+                                    <tr>
+                                        <th>Nama Lengkap</th>
+                                        <td>Erlangga Hariadi Putra</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Usia</th>
+                                        <td>39 Tahun</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Jenis Kelamin</th>
+                                        <td>Laki-laki</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Kebangsaan</th>
+                                        <td>Indonesia</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Status Pernikahan</th>
+                                        <td>Belum Menikah</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Domisili</th>
+                                        <td>Semarang</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Minat / Hobi</th>
+                                        <td>Traveling, Kuliner</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: Pendidikan & Skill -->
+                <div class="tab-pane fade" id="pendidikan" role="tabpanel">
+                    <div class="row">
+                        <!-- Kolom Pendidikan -->
+                        <div class="col-md-6 mb-4">
+                            <h4 class="mb-4 fw-bold text-primary"><i class="fa-solid fa-building-columns me-2"></i> Riwayat Pendidikan</h4>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-title">Amd. Kom (D3)</div>
+                                    <div class="timeline-subtitle">STEKOM Semarang, Semarang (2004-2007)</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-title">SMA</div>
+                                    <div class="timeline-subtitle">SMA Kesatrian 1, Semarang (2001-2004) </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-title">SMP</div>
+                                    <div class="timeline-subtitle">SMP Kesatrian 2, Semarang (1998-2001) </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-title">SD</div>
+                                    <div class="timeline-subtitle">SD Kristen Sidareja, Cilacap (1992-1998) </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Kolom Keahlian -->
+                        <div class="col-md-6">
+                            <h4 class="mb-4 fw-bold text-primary"><i class="fa-solid fa-code me-2"></i> Keahlian & Tools</h4>
+                            <div class="mb-4">
+                                <h6 class="fw-bold mb-2">Bahasa & Database</h6>
+                                <span class="skill-badge">PHP</span>
+                                <span class="skill-badge">HTML</span>
+                                <span class="skill-badge">CSS</span>
+                                <span class="skill-badge">JavaScript</span>
+                                <span class="skill-badge">MySQL</span>
+                            </div>
+                            <div class="mb-4">
+                                <h6 class="fw-bold mb-2">Framework & Engine</h6>
+                                <span class="skill-badge">WordPress</span>
+                                <span class="skill-badge">CodeIgniter</span>
+                                <span class="skill-badge border-warning text-warning bg-light">React (Learning)</span>
+                                <span class="skill-badge border-warning text-warning bg-light">NodeJS (Learning)</span>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-2">Software / Tools</h6>
+                                <span class="skill-badge"><i class="fa-solid fa-terminal"></i> Visual Studio Code</span>
+                                <span class="skill-badge"><i class="fa-solid fa-server"></i> WinSCP FTP</span>
+                                <span class="skill-badge"><i class="fa-solid fa-database"></i> SQLYog</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 4: Pengalaman Kerja -->
+                <div class="tab-pane fade" id="pengalaman" role="tabpanel">
+                    <h4 class="mb-4 fw-bold text-primary"><i class="fa-solid fa-business-time me-2"></i> Pengalaman Kerja</h4>
+                    <div class="timeline">
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">September 2025 - Sekarang</div>
+                            <div class="timeline-title">Wordpress Developer</div>
+                            <div class="timeline-subtitle">PT DESTEKNO Aplikasi Indonesia, Semarang</div>
+                            <p class="text-muted mb-0">Membuat website dengan engine wordpress, membuat dokumentasi berupa dokumen dan video tutorial, serta melakukan presentasi ke klien perusahaan.</p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">November 2016 - Agustus 2025</div>
+                            <div class="timeline-title">Front End</div>
+                            <div class="timeline-subtitle">PT DES Teknologi Informasi, Semarang</div>
+                            <p class="text-muted mb-0">Membuat website dengan engine wordpress dan melakukan presentasi ke klien perusahaan. Serta membuat template aplikasi dengan menggunakan engine CodeIgniter.</p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">Maret 2013 - Desember 2013</div>
+                            <div class="timeline-title">Administrasi Gudang</div>
+                            <div class="timeline-subtitle">PT Arna Makmur Industri, Semarang</div>
+                            <p class="text-muted mb-0">Melakukan pengecekan stok gudang dan membuat laporan inventory secara berkala.</p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">Juli 2011 - Desember 2012</div>
+                            <div class="timeline-title">Graphic & Web Designer</div>
+                            <div class="timeline-subtitle">Recore Media, Semarang</div>
+                            <p class="text-muted mb-0">Membuat desain website, MMT, Brosur, Poster dan lain-lain. Membuat website sesuai desain yang telah dibuat sampai dengan presentasi dengan klien kantor.</p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">Juli 2010 - Juni 2011</div>
+                            <div class="timeline-title">Visual Programmer</div>
+                            <div class="timeline-subtitle">Layar Media, Semarang</div>
+                            <p class="text-muted mb-0">Membuat aplikasi dengan menggunakan bahasa pemrograman Visual FoxPro dan Visual Basic.</p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">Maret 2008 - Juni 2010</div>
+                            <div class="timeline-title">Asisten Dosen</div>
+                            <div class="timeline-subtitle">STEKOM Semarang, Semarang</div>
+                            <p class="text-muted mb-0">Membantu dosen dalam menyiapkan segala materi kuliah yang akan diajarkan dan menggantikan mengajar jika dosen berhalangan hadir.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- TAB 5: Portofolio (Accordion) -->
+                <div class="tab-pane fade" id="portofolio" role="tabpanel">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="fw-bold text-primary mb-0"><i class="fa-solid fa-list-check me-2"></i> Direktori Portofolio Website</h4>
+                    </div>
+                    
+                    <div class="accordion shadow-sm" id="accordionPortofolio">
+
+                        <!-- Kategori 1: Pemerintahan & Publik -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#kategoriPemerintahan">
+                                    <i class="fa-solid fa-building-columns me-2"></i> Pemerintahan & Lembaga Publik
+                                </button>
+                            </h2>
+                            <div id="kategoriPemerintahan" class="accordion-collapse collapse show" data-bs-parent="#accordionPortofolio">
+                                <div class="accordion-body p-0">
+                                    <ul class="portfolio-list">
+                                        <li><a href="https://dprd.tegalkota.go.id" target="_blank"><i class="fa-solid fa-globe"></i> dprd.tegalkota.go.id</a></li>
+                                        <li><a href="https://dprd.wonogirikab.go.id" target="_blank"><i class="fa-solid fa-globe"></i> dprd.wonogirikab.go.id</a></li>
+                                        <li><a href="https://wonogirikab.go.id" target="_blank"><i class="fa-solid fa-globe"></i> wonogirikab.go.id</a></li>
+                                        <li><a href="https://makassar.imigrasi.go.id" target="_blank"><i class="fa-solid fa-globe"></i> makassar.imigrasi.go.id</a></li>
+                                        <li><a href="https://pn-demak.go.id" target="_blank"><i class="fa-solid fa-globe"></i> pn-demak.go.id</a></li>
+                                        <li><a href="https://dpmptsp.takalarkab.go.id" target="_blank"><i class="fa-solid fa-globe"></i> dpmptsp.takalarkab.go.id</a></li>
+                                        <li><a href="https://pdgisleman.com" target="_blank"><i class="fa-solid fa-globe"></i> pdgisleman.com (PDGI)</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kategori 2: Kesehatan & RS -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kategoriKesehatan">
+                                    <i class="fa-solid fa-hospital me-2"></i> Kesehatan & Rumah Sakit
+                                </button>
+                            </h2>
+                            <div id="kategoriKesehatan" class="accordion-collapse collapse" data-bs-parent="#accordionPortofolio">
+                                <div class="accordion-body p-0">
+                                    <ul class="portfolio-list">
+                                        <li><a href="https://rsudashari.pemalangkab.go.id" target="_blank"><i class="fa-solid fa-globe"></i> rsudashari.pemalangkab.go.id</a></li>
+                                        <li><a href="https://rshspml.com" target="_blank"><i class="fa-solid fa-globe"></i> rshspml.com</a></li>
+                                        <li><a href="https://rsud.brebeskab.go.id" target="_blank"><i class="fa-solid fa-globe"></i> rsud.brebeskab.go.id</a></li>
+                                        <li><a href="https://ppid.rsud.brebeskab.go.id" target="_blank"><i class="fa-solid fa-globe"></i> ppid.rsud.brebeskab.go.id</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kategori 3: Kampus & Perguruan Tinggi -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kategoriKampus">
+                                    <i class="fa-solid fa-graduation-cap me-2"></i> Kampus & Perguruan Tinggi
+                                </button>
+                            </h2>
+                            <div id="kategoriKampus" class="accordion-collapse collapse" data-bs-parent="#accordionPortofolio">
+                                <div class="accordion-body p-0">
+                                    <ul class="portfolio-list">
+                                        <li><a href="https://istn.ac.id" target="_blank" class="fw-bold"><i class="fa-solid fa-globe"></i> istn.ac.id</a></li>
+                                        
+                                        <!-- Poltekpar Makassar -->
+                                        <li class="bg-light"><a href="https://poltekparmakassar.ac.id" target="_blank" class="fw-bold"><i class="fa-solid fa-globe"></i> poltekparmakassar.ac.id (Utama)</a></li>
+                                        <li><a href="https://p3m.poltekparmakassar.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> p3m.poltekparmakassar.ac.id</a></li>
+                                        <li><a href="https://ppid.poltekparmakassar.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> ppid.poltekparmakassar.ac.id</a></li>
+                                        <li><a href="https://perpustakaan.poltekparmakassar.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> perpustakaan.poltekparmakassar.ac.id</a></li>
+                                        <li><a href="https://journal.poltekparmakassar.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> journal.poltekparmakassar.ac.id</a></li>
+                                        <li><a href="https://sku.poltekparmakassar.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> sku.poltekparmakassar.ac.id</a></li>
+                                        <li><a href="https://pew.poltekparmakassar.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> pew.poltekparmakassar.ac.id</a></li>
+                                        <li><a href="https://dik.poltekparmakassar.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> dik.poltekparmakassar.ac.id</a></li>
+                                        <li><a href="https://tah.poltekparmakassar.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> tah.poltekparmakassar.ac.id</a></li>
+                                        <li><a href="https://pph.poltekparmakassar.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> pph.poltekparmakassar.ac.id</a></li>
+                                        <li><a href="https://upw.poltekparmakassar.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> upw.poltekparmakassar.ac.id</a></li>
+                                        <li><a href="https://pka.poltekparmakassar.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> pka.poltekparmakassar.ac.id</a></li>
+                                        <li><a href="https://dep.poltekparmakassar.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> dep.poltekparmakassar.ac.id</a></li>
+
+                                        <!-- UNIM Bone -->
+                                        <li class="bg-light"><a href="https://unimbone.ac.id" target="_blank" class="fw-bold"><i class="fa-solid fa-globe"></i> unimbone.ac.id (Utama)</a></li>
+                                        <li><a href="https://bpm.unimbone.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> bpm.unimbone.ac.id</a></li>
+                                        <li><a href="https://fpp.unimbone.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> fpp.unimbone.ac.id</a></li>
+                                        <li><a href="https://fkip.unimbone.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> fkip.unimbone.ac.id</a></li>
+                                        <li><a href="https://lpppm.unimbone.ac.id" target="_blank" class="sub-link"><i class="fa-solid fa-link"></i> lpppm.unimbone.ac.id</a></li>
+
+                                        <!-- Poli Pangkep -->
+                                        <li><a href="https://polipangkep.ac.id" target="_blank" class="fw-bold"><i class="fa-solid fa-globe"></i> polipangkep.ac.id</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kategori 4: Sekolah -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kategoriSekolah">
+                                    <i class="fa-solid fa-school me-2"></i> Sekolah (SD, SMP, SMA, SMK)
+                                </button>
+                            </h2>
+                            <div id="kategoriSekolah" class="accordion-collapse collapse" data-bs-parent="#accordionPortofolio">
+                                <div class="accordion-body p-0" style="max-height: 350px; overflow-y: auto;">
+                                    <ul class="portfolio-list">
+                                        <li><a href="https://smkkhdsonggom.sch.id" target="_blank"><i class="fa-solid fa-globe"></i> smkkhdsonggom.sch.id</a></li>
+                                        <li><a href="https://smk-akpelni.sch.id" target="_blank"><i class="fa-solid fa-globe"></i> smk-akpelni.sch.id</a></li>
+                                        <li><a href="https://smkteukuumar.sch.id" target="_blank"><i class="fa-solid fa-globe"></i> smkteukuumar.sch.id</a></li>
+                                        <li><a href="https://sman1sanden.sch.id" target="_blank"><i class="fa-solid fa-globe"></i> sman1sanden.sch.id</a></li>
+                                        <li><a href="https://ypiasupriyadi.sch.id" target="_blank"><i class="fa-solid fa-globe"></i> ypiasupriyadi.sch.id</a></li>
+                                        <li><a href="https://sman01banjarharjo.sch.id" target="_blank"><i class="fa-solid fa-globe"></i> sman01banjarharjo.sch.id</a></li>
+                                        <li><a href="https://smkmuh1moyudan.sch.id" target="_blank"><i class="fa-solid fa-globe"></i> smkmuh1moyudan.sch.id</a></li>
+                                        <li><a href="https://smamardisiswa.sch.id" target="_blank"><i class="fa-solid fa-globe"></i> smamardisiswa.sch.id</a></li>
+                                        <li><a href="https://smpmugadeta.sch.id" target="_blank"><i class="fa-solid fa-globe"></i> smpmugadeta.sch.id</a></li>
+                                        <li><a href="https://sdadidua.sch.id" target="_blank"><i class="fa-solid fa-globe"></i> sdadidua.sch.id</a></li>
+                                        <li><a href="https://smkkaryabhakti.sch.id" target="_blank"><i class="fa-solid fa-globe"></i> smkkaryabhakti.sch.id</a></li>
+                                        <li><a href="https://smkpbaharikotategal.sch.id" target="_blank"><i class="fa-solid fa-globe"></i> smkpbaharikotategal.sch.id</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kategori 5: Perusahaan & Bisnis -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kategoriPerusahaan">
+                                    <i class="fa-solid fa-briefcase me-2"></i> Perusahaan, Bisnis & Corporate
+                                </button>
+                            </h2>
+                            <div id="kategoriPerusahaan" class="accordion-collapse collapse" data-bs-parent="#accordionPortofolio">
+                                <div class="accordion-body p-0">
+                                    <ul class="portfolio-list">
+                                        <li><a href="https://bprartomoro.co.id" target="_blank"><i class="fa-solid fa-globe"></i> bprartomoro.co.id</a></li>
+                                        <li><a href="https://pronatechindoengineering.com" target="_blank"><i class="fa-solid fa-globe"></i> pronatechindoengineering.com</a></li>
+                                        <li><a href="https://vincointerior.com" target="_blank"><i class="fa-solid fa-globe"></i> vincointerior.com</a></li>
+                                        <li><a href="https://amraapparel.com" target="_blank"><i class="fa-solid fa-globe"></i> amraapparel.com</a></li>
+                                        <li><a href="https://wahyupondasi.id" target="_blank"><i class="fa-solid fa-globe"></i> wahyupondasi.id</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- TAB 6: Kontak -->
+                <div class="tab-pane fade" id="kontak" role="tabpanel">
+                    <h4 class="mb-4 fw-bold text-primary">
+                        <i class="fa-solid fa-address-book me-2"></i> Kontak & Media Sosial
+                    </h4>
+
+                    <div class="row g-3">
+
+                        <!-- WhatsApp -->
+                        <div class="col-md-6">
+                            <a href="https://wa.me/6285173209927" target="_blank" class="text-decoration-none">
+                                <div class="card p-3 d-flex flex-row align-items-center">
+                                    <i class="fab fa-whatsapp fa-2x text-success me-3"></i>
+                                    <div>
+                                        <strong>WhatsApp</strong><br>
+                                        085173209927
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="col-md-6">
+                            <a href="mailto:anggaspecial@gmail.com" target="_blank" class="text-decoration-none">
+                                <div class="card p-3 d-flex flex-row align-items-center">
+                                    <i class="fa-solid fa-envelope fa-2x text-danger me-3"></i>
+                                    <div>
+                                        <strong>Email</strong><br>
+                                        anggaspecial@gmail.com
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Instagram -->
+                        <div class="col-md-6">
+                            <a href="https://instagram.com/anggaspecial" target="_blank" class="text-decoration-none">
+                                <div class="card p-3 d-flex flex-row align-items-center">
+                                    <i class="fab fa-instagram fa-2x text-warning me-3"></i>
+                                    <div>
+                                        <strong>Instagram</strong><br>
+                                        @anggaspecial
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Facebook -->
+                        <div class="col-md-6">
+                            <a href="https://www.facebook.com/angga.987727" target="_blank" class="text-decoration-none">
+                                <div class="card p-3 d-flex flex-row align-items-center">
+                                    <i class="fab fa-facebook fa-2x text-primary me-3"></i>
+                                    <div>
+                                        <strong>Facebook</strong><br>
+                                        Profile Saya
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div> <!-- End Tab Content -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p class="mb-1">&copy; 2026 Erlangga Hariadi Putra. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+
+        // Simpan preferensi
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+            } else {
+                localStorage.setItem("theme", "light");
+            }
+        }
+
+    // Load preference
+        window.onload = function() {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark-mode");
+            }
+        };
+    </script>
+
+</body>
+</html>
